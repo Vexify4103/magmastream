@@ -44,8 +44,6 @@ export class Player {
 	public voiceState: VoiceState;
 	/** The Manager. */
 	public manager: Manager;
-	/** The autoplay state of the player. */
-	public isAutoplay: boolean = false;
 
 	private static _manager: Manager;
 	private readonly data: Record<string, unknown> = {};
@@ -254,26 +252,6 @@ export class Player {
 		});
 
 		Object.assign(this, { position: 0, playing: true });
-	}
-
-	/**
-	 * Sets the autoplay-state of the player.
-	 * @param autoplayState
-	 * @param botUser
-	 */
-	public setAutoplay(autoplayState: boolean, botUser: object) {
-		if (typeof autoplayState !== "boolean") {
-			throw new TypeError("autoplayState must be a boolean.");
-		}
-
-		if (typeof botUser !== "object") {
-			throw new TypeError("botUser must be a user-object.");
-		}
-
-		this.isAutoplay = autoplayState;
-		this.set("Internal_BotUser", botUser);
-
-		return this;
 	}
 
 	/**
